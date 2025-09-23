@@ -11,13 +11,13 @@ public:
         vector<int> price(n, 1e9);
         price[src] = 0;
 
-        priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>> pq;//k, price, n
+        queue<pair<int, pair<int, int>>> pq;//k, price, n
         pq.push({0, {0, src}});
 
         while(!pq.empty()) {
-            if(pq.top().first>k) return price[dst]==1e9?-1: price[dst];
+            if(pq.front().first>k) return price[dst]==1e9?-1: price[dst];
 
-            auto it=pq.top(); pq.pop();
+            auto it=pq.front(); pq.pop();
 
             int kCur=it.first;
             auto [prc, num] = it.second;
